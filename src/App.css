@@ -1,0 +1,147 @@
+.container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 20% 50%, rgba(255, 182, 193, 0.3) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(255, 192, 203, 0.3) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.question {
+  font-size: 3.5rem;
+  color: white;
+  text-align: center;
+  margin-bottom: 3rem;
+  font-weight: 600;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  animation: fadeIn 1s ease-in;
+  z-index: 1;
+}
+
+.buttons {
+  display: flex;
+  gap: 2rem;
+  position: relative;
+  z-index: 1;
+}
+
+.btn {
+  padding: 1rem 3rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.btn-yes {
+  background: linear-gradient(135deg, #ff6b6b, #ee5a6f);
+  color: white;
+}
+
+.btn-yes:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
+  background: linear-gradient(135deg, #ee5a6f, #ff6b6b);
+}
+
+.btn-yes:active {
+  transform: scale(0.95);
+}
+
+.btn-no {
+  background: linear-gradient(135deg, #95a5a6, #7f8c8d);
+  color: white;
+}
+
+.btn-no:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 20px rgba(149, 165, 166, 0.4);
+}
+
+.success {
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+}
+
+.heart {
+  font-size: 8rem;
+  animation: heartbeat 1.5s ease-in-out infinite;
+  margin-bottom: 2rem;
+}
+
+.success-message {
+  font-size: 3rem;
+  color: white;
+  text-align: center;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  animation: fadeIn 1s ease-in;
+}
+
+.sub-message {
+  font-size: 1.5rem;
+  color: white;
+  text-align: center;
+  opacity: 0.9;
+  animation: fadeIn 1.5s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes heartbeat {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+}
+
+@media (max-width: 768px) {
+  .question {
+    font-size: 2.5rem;
+  }
+  
+  .buttons {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  .btn {
+    width: 200px;
+  }
+  
+  .success-message {
+    font-size: 2rem;
+  }
+}
