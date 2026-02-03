@@ -4,6 +4,7 @@ import './App.css'
 function App() {
   const [response, setResponse] = useState(null)
   const [noButtonPosition, setNoButtonPosition] = useState({ x: 0, y: 0 })
+  const [noButtonMoved, setNoButtonMoved] = useState(false)
 
   const handleYes = () => {
     setResponse('yes')
@@ -16,6 +17,7 @@ function App() {
     const newX = Math.random() * maxX
     const newY = Math.random() * maxY
     setNoButtonPosition({ x: newX, y: newY })
+    setNoButtonMoved(true)
   }
 
   if (response === 'yes') {
@@ -38,12 +40,12 @@ function App() {
         <button
           className="btn btn-no"
           onClick={handleNo}
-          style={{
+          style={noButtonMoved ? {
             position: 'absolute',
             left: `${noButtonPosition.x}px`,
             top: `${noButtonPosition.y}px`,
             transition: 'all 0.3s ease'
-          }}
+          } : {}}
         >
           NO
         </button>
