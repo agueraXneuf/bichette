@@ -6,7 +6,10 @@ function App() {
   const [noButtonPosition, setNoButtonPosition] = useState({ x: 0, y: 0 })
   const [noButtonMoved, setNoButtonMoved] = useState(false)
   const [noButtonDimensions, setNoButtonDimensions] = useState({ width: 0, height: 0 })
-  const [yesButtonPosition, setYesButtonPosition] = useState({ x: 0, y: 0 })
+  const [yesButtonPosition, setYesButtonPosition] = useState({ x: 0, y: 0, centerX: 0, centerY: 0 })
+  const [yesButtonDimensions, setYesButtonDimensions] = useState({ width: 200, height: 50 })
+  const [yesButtonPositionLocked, setYesButtonPositionLocked] = useState(false)
+  const [noClickCount, setNoClickCount] = useState(0)
   const noButtonRef = useRef(null)
   const yesButtonRef = useRef(null)
 
@@ -35,10 +38,19 @@ function App() {
       buttonHeight = rect.height
       setNoButtonDimensions({ width: buttonWidth, height: buttonHeight })
       
-      // Store YES button position to keep it fixed
-      if (yesButtonRef.current) {
+      // Store YES button position, center, and dimensions to keep it fixed - NEVER CHANGE AFTER THIS
+      if (yesButtonRef.current && !yesButtonPositionLocked) {
         const yesRect = yesButtonRef.current.getBoundingClientRect()
-        setYesButtonPosition({ x: yesRect.left, y: yesRect.top })
+        const centerX = yesRect.left + yesRect.width / 2
+        const centerY = yesRect.top + yesRect.height / 2
+        setYesButtonPosition({ 
+          x: yesRect.left, 
+          y: yesRect.top,
+          centerX: centerX,
+          centerY: centerY
+        })
+        setYesButtonDimensions({ width: yesRect.width, height: yesRect.height })
+        setYesButtonPositionLocked(true)
       }
     } else {
       buttonWidth = 150
@@ -68,6 +80,7 @@ function App() {
     
     setNoButtonPosition({ x: newX, y: newY })
     setNoButtonMoved(true)
+    setNoClickCount(prev => prev + 1)
   }
 
   if (response === 'yes') {
@@ -88,11 +101,33 @@ function App() {
           ref={yesButtonRef}
           className="btn btn-yes" 
           onClick={handleYes}
-          style={noButtonMoved ? {
-            position: 'fixed',
-            left: `${yesButtonPosition.x}px`,
-            top: `${yesButtonPosition.y}px`,
-          } : {}}
+          style={noButtonMoved ? (() => {
+            // Use stored original button dimensions (before scaling)
+            const originalWidth = yesButtonDimensions.width
+            const originalHeight = yesButtonDimensions.height
+            
+            // Calculate scale needed to cover screen (with some padding)
+            const scaleForFullScreen = Math.max(
+              window.innerWidth / originalWidth,
+              window.innerHeight / originalHeight
+            ) * 1.1 // 1.1 to ensure it covers the whole screen
+            
+            // Scale increases with each click, capped at full screen size
+            const baseScale = 1 + noClickCount * 0.5
+            const finalScale = Math.min(baseScale, scaleForFullScreen)
+            
+            // Keep the ORIGINAL top-left position completely fixed
+            // Scale from top-left corner so the position never changes
+            return {
+              position: 'fixed',
+              left: `${yesButtonPosition.x}px`,
+              top: `${yesButtonPosition.y}px`,
+              transform: `scale(${finalScale})`,
+              transformOrigin: 'top left',
+              transition: 'transform 0.3s ease',
+              zIndex: 10,
+            }
+          })() : {}}
         >
           YES
         </button>
@@ -113,7 +148,8 @@ function App() {
             position: 'fixed',
             left: `${noButtonPosition.x}px`,
             top: `${noButtonPosition.y}px`,
-            transition: 'all 0.3s ease'
+            transition: 'all 0.3s ease',
+            zIndex: 20
           } : {}}
         >
           NO
