@@ -79,6 +79,15 @@
   box-shadow: 0 6px 20px rgba(149, 165, 166, 0.4);
 }
 
+.btn-placeholder {
+  visibility: hidden;
+  pointer-events: none;
+  flex-shrink: 0;
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
 .success {
   background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
 }
