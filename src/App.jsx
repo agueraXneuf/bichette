@@ -88,7 +88,7 @@ function App() {
       <div className="container success">
         <div className="heart">💖</div>
         <h1 className="success-message">Yay! I'm so happy! 💕</h1>
-        <p className="sub-message">You've made my day! Happy Valentine's Day! ❤️</p>
+        <p className="sub-message">You've made my day! ❤️</p>
         <div className="carousel-container">
           <div className="carousel">
             <div className="carousel-item">
@@ -114,7 +114,7 @@ function App() {
 
   return (
     <div className="container">
-      <h1 className="question">Will you be my valentine?</h1>
+      <h1 className="question">Will you be my Valentine?</h1>
       <div className="buttons">
         <button 
           ref={yesButtonRef}
@@ -148,7 +148,7 @@ function App() {
             }
           })() : {}}
         >
-          YES
+          YES 🥳
         </button>
         {noButtonMoved && (
           <div 
@@ -171,7 +171,7 @@ function App() {
             zIndex: 20
           } : {}}
         >
-          NO
+          NO 💔
         </button>
       </div>
     </div>
