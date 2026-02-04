@@ -89,6 +89,25 @@ function App() {
         <div className="heart">💖</div>
         <h1 className="success-message">Yay! I'm so happy! 💕</h1>
         <p className="sub-message">You've made my day! Happy Valentine's Day! ❤️</p>
+        <div className="carousel-container">
+          <div className="carousel">
+            <div className="carousel-item">
+              <div className="carousel-image-placeholder"></div>
+            </div>
+            <div className="carousel-item">
+              <div className="carousel-image-placeholder"></div>
+            </div>
+            <div className="carousel-item">
+              <div className="carousel-image-placeholder"></div>
+            </div>
+            <div className="carousel-item">
+              <div className="carousel-image-placeholder"></div>
+            </div>
+            <div className="carousel-item">
+              <div className="carousel-image-placeholder"></div>
+            </div>
+          </div>
+        </div>
       </div>
     )
   }
