@@ -92,19 +92,19 @@ function App() {
         <div className="carousel-container">
           <div className="carousel">
             <div className="carousel-item">
-              <div className="carousel-image-placeholder"></div>
+              <img src="/images/IMG_0441.JPG" alt="Valentine's memory" className="carousel-image" />
             </div>
             <div className="carousel-item">
-              <div className="carousel-image-placeholder"></div>
+              <img src="/images/IMG_0440.JPG" alt="Valentine's memory" className="carousel-image" />
             </div>
             <div className="carousel-item">
-              <div className="carousel-image-placeholder"></div>
+              <img src="/images/IMG_0146.JPG" alt="Valentine's memory" className="carousel-image" />
             </div>
             <div className="carousel-item">
-              <div className="carousel-image-placeholder"></div>
+              <img src="/images/IMG_0288.JPG" alt="Valentine's memory" className="carousel-image" />
             </div>
             <div className="carousel-item">
-              <div className="carousel-image-placeholder"></div>
+              <img src="/images/IMG_7863.JPG" alt="Valentine's memory" className="carousel-image" />
             </div>
           </div>
         </div>
